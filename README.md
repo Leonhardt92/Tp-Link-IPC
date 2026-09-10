@@ -1,5 +1,5 @@
 
-# TP-Link IPC43AW Web Console v4
+# TP-Link IPC43AW Web Console
 
 一个轻量级的 TP-Link IPC43AW 摄像头 Web 控制台，用于解决官方 Web 界面在 Chrome / Edge / Firefox 等现代浏览器上无法查看视频的问题。
 
