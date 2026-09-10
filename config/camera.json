@@ -1,0 +1,16 @@
+
+{
+  "camera": {
+    "ip": "192.168.0.97",
+    "onvif_port": 2020,
+    "username": "admin",
+    "password": "admin"
+  },
+  "server": {
+    "port": 8080
+  },
+  "ptz": {
+    "reverse_x": false,
+    "reverse_y": false
+  }
+}

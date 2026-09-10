@@ -1,0 +1,182 @@
+
+<!doctype html>
+<html lang="zh-CN" data-page-node-id="mY7AbqI3lF4XEd5An4hNd6">
+<head data-page-node-id="X04LBP2DFRV8OsXJTMZHoL">
+<meta charset="utf-8" data-page-node-id="NB48oAsugEU7vOkDzBkXH7">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="XrgIW6Am8TZZ4BHMiAO8uq">
+<title>TP-Link IPC43AW Web Console</title>
+<style>
+  :root{
+    --bg:#f4f5f7;
+    --surface:#ffffff;
+    --text:#1c1f24;
+    --muted:#8a909a;
+    --line:#eceef1;
+    --accent:#3a7afe;
+    --accent-soft:#eef3ff;
+    --danger:#e5484d;
+    --ok:#2fb344;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:32px 16px;
+  }
+  .wrap{max-width:860px;margin:0 auto}
+
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:24px;
+  }
+  header h1{font-size:18px;font-weight:600;letter-spacing:.2px}
+  header h1 span{color:var(--muted);font-weight:500;font-size:13px;margin-left:8px}
+  .live{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:12px;color:var(--muted);
+    background:var(--surface);border:1px solid var(--line);
+    padding:6px 12px;border-radius:999px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);position:relative}
+  .dot::after{
+    content:"";position:absolute;inset:-4px;border-radius:50%;
+    background:var(--ok);opacity:.35;animation:pulse 1.8s ease-out infinite;
+  }
+  @keyframes pulse{0%{transform:scale(.6);opacity:.5}100%{transform:scale(1.8);opacity:0}}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:16px;margin-bottom:16px;
+  }
+  .card h2{
+    font-size:12px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--muted);margin-bottom:12px;
+  }
+
+  #video{
+    display:block;width:100%;aspect-ratio:16/9;border-radius:10px;
+    background:#0d0f12;border:0;
+  }
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:620px){.grid2{grid-template-columns:1fr}}
+
+  .pad{display:grid;grid-template-columns:repeat(3,72px);grid-template-rows:repeat(3,72px);
+    gap:8px;justify-content:center;align-content:center}
+  .pad .spacer{visibility:hidden}
+  .btn{
+    border:1px solid var(--line);background:var(--surface);color:var(--text);
+    border-radius:14px;font-size:22px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .06s ease,background .15s ease,border-color .15s ease;
+    user-select:none;-webkit-user-select:none;touch-action:none;
+  }
+  .btn:hover{background:var(--accent-soft);border-color:#d7e3ff}
+  .btn:active{transform:scale(.94);background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn.stop{background:var(--surface);color:var(--danger);font-size:13px;font-weight:600;letter-spacing:.04em}
+  .btn.stop:active{background:var(--danger);color:#fff;border-color:var(--danger)}
+
+  .kv{display:flex;flex-direction:column;gap:10px}
+  .kv .row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .kv .k{color:var(--muted);font-size:13px}
+  .kv .v{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;text-align:right;word-break:break-all}
+  .tag{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px}
+  .tag.idle{background:var(--accent-soft);color:var(--accent)}
+  .tag.moving{background:#fff0e6;color:#d97706}
+</style>
+</head>
+<body data-page-node-id="R5IHBRQEfZnzZdlC3UpElH">
+<div class="wrap" data-page-node-id="zVl4J2JrMmqRSmmskw9ZtK">
+  <header data-page-node-id="n8RX3jHNt7POYDaibiaP2j">
+    <h1 data-page-node-id="ZxQ0PsEmbHPVycaqG9AeXy">IPC43AW Web Console <span data-page-node-id="ayHE9KqDY9dUpt7wbWuoxc">v4</span></h1>
+    <span class="live" data-page-node-id="6B0M05qrZNgf06k1qQTtmA"><span class="dot" data-page-node-id="GobCYywdY1EeEcZnlelAX6"></span> Live</span>
+  </header>
+
+  <div class="card" data-page-node-id="BKouAz55hGH3l2Ho0xrpMA">
+    <h2 data-page-node-id="0mBI1HIYU5dNHfxLFHwUxC">Video</h2>
+    <iframe id="video" data-page-node-id="12fez2Q7bHltspHU6JCcWN"></iframe>
+  </div>
+
+  <div class="grid2" data-page-node-id="INZrb2DpBjSncqGdXYGmkt">
+    <div class="card" data-page-node-id="XMkJwYfXZrXmsbItw7lJCY">
+      <h2 data-page-node-id="UmOyUiAi3bECxOtpyf0Pk7">PTZ</h2>
+      <div class="pad" data-page-node-id="dA7FJW3cChnlie2bsDjaEE">
+        <div class="spacer" data-page-node-id="5eKdt9SwMiDM1OOrghrglA"></div>
+        <button class="btn" data-dir="up" data-page-node-id="uG9qmP9vbO81AirjgE21P3">↑</button>
+        <div class="spacer" data-page-node-id="SoxI2qIgpHi6SKbzcSirWK"></div>
+        <button class="btn" data-dir="left" data-page-node-id="rM3O8iSYhe0HNWHa7WEJ6g">←</button>
+        <button class="btn stop" id="stopBtn" data-page-node-id="1s4q0I9mXJEESLaGNihi56">STOP</button>
+        <button class="btn" data-dir="right" data-page-node-id="8SFfOWyrLRJFoXLozjyXwi">→</button>
+        <div class="spacer" data-page-node-id="DYKuPpkDjVlgOqeM3Iadrx"></div>
+        <button class="btn" data-dir="down" data-page-node-id="IiWMcbxey5skE8HQBtVC4R">↓</button>
+        <div class="spacer" data-page-node-id="ufuFZAgpFfOwfW5mWQvfI3"></div>
+      </div>
+    </div>
+
+    <div class="card" data-page-node-id="SWmCaxuIw7grQMJMZAwCvE">
+      <h2 data-page-node-id="JQKfch0p1cOI3HvJQG70gf">Position</h2>
+      <div class="kv" data-page-node-id="WTNZh7GE2IrAW54tB7MPcw">
+        <div class="row" data-page-node-id="fZeOeAI4WvDoxYwmVBzwF8"><span class="k" data-page-node-id="KTtp3jBW4qpkfhxYBqa8MD">Pan (x)</span><span class="v" id="pos-x" data-page-node-id="PrKggfnuaaaLVrpHymU7fY">—</span></div>
+        <div class="row" data-page-node-id="A3aWdD0ncnJU7X3Bg57HDe"><span class="k" data-page-node-id="E6pfWfnERoUGoyd7xdawbi">Tilt (y)</span><span class="v" id="pos-y" data-page-node-id="bOmIBETQYMBQ5kB4tgEAnp">—</span></div>
+        <div class="row" data-page-node-id="wPAp4uuId4zJDKfJ8GaX5p"><span class="k" data-page-node-id="5PsQFAgJFhJA1WPPILbuwg">Status</span><span class="v" id="pos-move" data-page-node-id="xcgoiqpqJWruXbdEUWVY43"><span class="tag idle" data-page-node-id="Pm8Vtc9nsDlaFAN1ZgICHU">IDLE</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-page-node-id="Jq56v82J5dmiROmX69tnMe">
+    <h2 data-page-node-id="Lz9eRWFBYSSbwg1YwCGHGP">Info</h2>
+    <div class="kv" data-page-node-id="zGsL57JAbSH9AYn5TiZ7V5">
+      <div class="row" data-page-node-id="WWN6PO7RzqwjPtAzniT0dc"><span class="k" data-page-node-id="rRJG7PhjpggAOe3jdqCrgH">Model</span><span class="v" id="info-model" data-page-node-id="GzZEHWutFDwhBoldKfIZMA">—</span></div>
+      <div class="row" data-page-node-id="q9DgYmgGQGDzHrWUPVZ1Ni"><span class="k" data-page-node-id="nmKcI7jZxccZPrPZ3ZqqTX">Firmware</span><span class="v" id="info-fw" data-page-node-id="bgN46lSq5P0nBkSO1XX7Fb">—</span></div>
+      <div class="row" data-page-node-id="jpN5xlKxDEkJfBAdqGdAPM"><span class="k" data-page-node-id="2QK8uFpy0h6mvcCk4VIpNG">Serial</span><span class="v" id="info-sn" data-page-node-id="KIrUj03a5tT3gVKGhr3ifc">—</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+video.src="http://localhost:1984/stream.html?src=ipc";
+
+function bind(dir){
+  const b=document.querySelector(`[data-dir="${dir}"]`);
+  b.addEventListener("mousedown",e=>{e.preventDefault();move(dir);});
+  b.addEventListener("mouseup",stop);
+  b.addEventListener("mouseleave",stop);
+  b.addEventListener("touchstart",e=>{e.preventDefault();move(dir);},{passive:false});
+  b.addEventListener("touchend",e=>{e.preventDefault();stop();});
+}
+["up","down","left","right"].forEach(bind);
+document.getElementById("stopBtn").addEventListener("click",stop);
+
+async function move(x){ fetch("/ptz/"+x,{method:"POST"}); }
+async function stop(){ fetch("/ptz/stop",{method:"POST"}); }
+
+async function update(){
+  try{
+    const r=await fetch("/position");
+    const p=await r.json();
+    document.getElementById("pos-x").textContent=Number(p.x).toFixed(3);
+    document.getElementById("pos-y").textContent=Number(p.y).toFixed(3);
+    const moving=/Moving|true/i.test(String(p.move));
+    document.getElementById("pos-move").innerHTML=moving
+      ?'<span class="tag moving">MOVING</span>'
+      :'<span class="tag idle">IDLE</span>';
+  }catch(e){}
+  try{
+    const i=await fetch("/info");
+    const d=await i.json();
+    document.getElementById("info-model").textContent=d.model||"—";
+    document.getElementById("info-fw").textContent=d.firmware||"—";
+    document.getElementById("info-sn").textContent=d.serial||"—";
+  }catch(e){}
+}
+setInterval(update,1000);
+update();
+</script>
+</body>
+</html>
